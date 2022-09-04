@@ -1,4 +1,4 @@
-# Mark
+# Mark (Virtual Assistant)
 This project is at the moment being all handled by a 13 year old
 
 Used python libraries:
