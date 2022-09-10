@@ -9,18 +9,22 @@ recognizer = speech_recognition.Recognizer()
 engine = pyttsx3.init()
 client = wolframalpha.Client("Enter wolframalpha app id")
 
-while True:
-    def talk(text):
-        engine.say(text)
-        engine.runAndWait()
 
-    print('I am listening sir')
-    talk('I am listening sir')
+def talk(text):
+    engine.say(text)
+    engine.runAndWait()
+
+print("How would you like me to call you? Please type below")
+talk('How would you like me to call you? Please type below')
+choice = input("Enter here")
+
+while True:
+    print("I am listening" + ' ' + choice)
+    talk("I am listening" + ' ' + choice)
 
     def error():
-        print("I didn't quite understant sir")
-        talk("I didn't quite understant sir")
-
+        print("I didn't quite understand" + ' ' + choice)
+        talk("I didn't quite understant")
 
     def receive_command():
         try:
@@ -44,61 +48,61 @@ while True:
         if 'play' in command:
             try:
                 song = command.replace('play', '')
-                print("playing" + ' ' + song)
-                talk('playing' + song)
+                print("playing" + ' ' + song + ' ' + choice)
+                talk('playing' + song + ' ' + choice)
                 pywhatkit.playonyt(song)
             except:
                 error()
         elif 'you there' in command:
             try:
-                print("I am always here for you sir!")
-                talk('I am always here for you sir!')
+                print("I am always here for you!" + ' ' + choice)
+                talk('I am always here for you!' + ' ' + choice)
             except:
                 error()
         elif 'created you' in command:
             try:
-                print("Tony Chung is the creator of mine sir!")
-                talk('Tony Chung is the creator of mine sir!')
+                print("Tony Chung is the creator of mine"+ ' ' + choice)
+                talk('Tony Chung is the creator of mine'+ ' ' + choice)
             except:
                 error()
         elif 'made you' in command:
             try:
-                print("Tony Chung is the creator of mine sir!")
-                talk('Tony Chung is the creator of mine sir!')
+                print("Tony Chung is the creator of mine"+ ' ' + choice)
+                talk('Tony Chung is the creator of mine'+ ' ' + choice)
             except:
                 error()
         elif 'your day' in command:
             try:
-                print("My day has been so far great sir! Thankyou for asking!")
-                talk('My day has been so far great sir! Thankyou for asking!')
+                print("My day has been so far great, Thankyou for asking!"+ ' ' + choice)
+                talk('My day has been so far great, Thankyou for asking!'+ ' ' + choice)
             except:
                 error()
         elif 'Hi' in command:
             try:
-                print("Hello sir!")
-                talk('Hello sir!')
+                print("Hello" + ' ' + choice)
+                talk('Hello' + ' ' + choice)
             except:
                 error()
         elif 'time' in command:
             try:
                 time = datetime.datetime.now().strftime('%H:%M')
-                print(time + " " + "sir")
-                talk('The current time is' + time + 'sir')
+                print(time + ' ' + choice)
+                talk('The current time is' + time + ' ' + choice)
             except:
                 error()
         elif 'date' in command:
            try:
                 dt_today = datetime.datetime.today()
                 date = (dt_today.strftime('%Y-%m-%d'))
-                print(date + " " + "sir")
-                talk('The current date is' + date + 'sir')
+                print(date + " " + ' ' + choice)
+                talk('The current date is' + date + ' ' + choice)
            except:
                error()
         else:
             try:
                 res = client.query(command)
-                print((next(res.results).text +" sir"))
-                talk(next(res.results).text + "sir")
+                print((next(res.results).text + ' ' + choice))
+                talk(next(res.results).text + ' ' + choice)
             except:
                 error()
 
